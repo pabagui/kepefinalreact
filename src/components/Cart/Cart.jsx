@@ -13,7 +13,7 @@ const Cart = () => {
 
     let order = {}
 
-    order.buyer = {name:'Pablo', email: 'aguila.pablo@gmail.com' , phone: '991383361'}
+    order.buyer = {name:'Pablo', email: 'aguila.pablo@gmail.com' , phone: '991383361'} //agregar formulario
     order.total = totalCart()
 
     order.items = cartList.map(cartItem => {

@@ -13,15 +13,29 @@ export const NavBar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
+                <Navbar.Brand>
                 <Link to='/'>
-                    K'epe Bags
+                <img
+                    alt=""
+                    src="logo.png"
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top"
+                    />{' '}K'epe Bags
                 </Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to="/category/Mochilas">Mochilas</Link>
-                        <Link to="/category/Totebags">Totebags</Link>
-                        <Link to="/category/Accesorios">Accesorios</Link>
+                        <Nav.Link>
+                            <Link to="/category/Mochilas">Mochilas</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to="/category/Totebags">Totebags</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to="/category/Accesorios">Accesorios</Link>
+                        </Nav.Link>
                     </Nav>                  
                 </Navbar.Collapse>
                 <Link to='/cart'>

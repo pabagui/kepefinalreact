@@ -24,7 +24,7 @@ function ItemCount({ initial, stock, onAdd}) {
         onAdd(counter)
     }
 
-  return <div className="container w-50">
+  return <div className="container w-20">
             <Button variant="dark" onClick={ handlerMinus }> - </Button>
             <Badge bg="danger">{ counter }</Badge>
             <Button variant="dark" onClick={ handlerAdd }> + </Button><br/>           
