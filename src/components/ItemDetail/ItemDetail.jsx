@@ -25,11 +25,12 @@ export const ItemDetail = ({product}) => {
 }
 
   //console.log(cartList)
+ // <Container className="d-flex justify-content-center"></Container>
 
   return (
       <>   
   
-            <Container className="d-flex justify-content-center">  {/* //arreglar este layout*/}
+            <Container>  {/* //arreglar este layout*/}
                 <Row xs="auto">
                     <div className='card w-25 mt-5'>
                                 <div className='card-header'>

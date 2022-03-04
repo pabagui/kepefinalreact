@@ -70,25 +70,26 @@ const Cart = () => {
  
 
     return <div className="container w-50"> 
-      {cartList.length !== 0 ? <>
-        { cartList.map(product => 
-        <li>{product.item.title} {product.item.name}, Precio: ${product.item.price}, Cantidad: {product.quantity}
-        <Button variant="danger" onClick={() => removeItem(product.item.id)}>x</Button>
-        </li> 
-        )}
-        {`El total de tu compra es $${totalCart()}`}
-        <Button variant="dark" onClick={clear}>Vaciar canasta</Button>
-        <Button variant="dark" onClick={buyOrder}>Generar orden de compra</Button>
-        </>     
-        :
-        <>
-        <span>Canasta vacía</span>
-        <Link to='/'>
-           <Button variant="dark">Ver productos en tienda</Button>
-        </Link>
-        </>
-      }
-      </div>
+              {cartList.length !== 0 ? 
+                <>
+                  { cartList.map(product => 
+                  <li>{product.item.title} {product.item.name}, Precio: ${product.item.price}, Cantidad: {product.quantity}
+                  <Button variant="danger" onClick={() => removeItem(product.item.id)}>x</Button>
+                  </li> 
+                  )}
+                  {`El total de tu compra es $${totalCart()}`}
+                  <Button variant="dark" onClick={clear}>Vaciar canasta</Button>
+                  <Button variant="dark" onClick={buyOrder}>Generar orden de compra</Button>
+                </>     
+              :
+                <>
+                <span>Canasta vacía</span>
+                <Link to='/'>
+                  <Button variant="dark">Ver productos en tienda</Button>
+                </Link>
+                </>
+              }
+            </div>
 };
 
 

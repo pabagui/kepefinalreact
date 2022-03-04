@@ -40,7 +40,7 @@ export const ItemDetailContainer = () => {
 
 
 
- console.log(product)
+ //console.log(product)
   return (
     <>
       { loading ?

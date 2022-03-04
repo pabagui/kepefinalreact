@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+//cambiar toda la config por .env dentro del gitignore
 const firebaseConfig = {
   apiKey: "AIzaSyAstXdtqKqGa-aXs8uf4das_mKg1hqDN_A",
   authDomain: "kepeproyectofinalreact.firebaseapp.com",

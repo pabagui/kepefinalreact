@@ -8,7 +8,7 @@ const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
 
     const addItem = (item) => {
-        console.log(item)
+        //console.log(item)
         //condición para no repetir productos y mostrar suma de cantidad:
         const index = cartList.findIndex(prod => prod.item.id === item.item.id)
         if (index === -1) {

@@ -10,10 +10,11 @@ import { Link } from 'react-router-dom'
 export const Item = ({ item }) => {
 //export const Item = ({ id, name, title, stock, price, pictureUrl}) => {
 
-console.log('item')
+//console.log('item')
+//<Container className="d-flex justify-content-center"></Container>
     return (
         <div>
-            <Container className="d-flex justify-content-center">  {/* //arreglar este layout*/}
+            <Container>  {/* //arreglar este layout*/}
                 <Row xs="auto">
                     
                         <div className='card w-25 mt-5'>

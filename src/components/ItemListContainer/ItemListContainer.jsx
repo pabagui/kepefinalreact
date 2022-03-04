@@ -15,7 +15,7 @@ export const ItemListContainer = ( {greetings}) => {
     const { idCategory } = useParams()
 
     useEffect(() => {
-
+//arreglar código repetido con ternario
 
         if(idCategory) {
 
@@ -53,7 +53,7 @@ export const ItemListContainer = ( {greetings}) => {
     }, [idCategory])
 
     //console.log(product)
-    console.log(products)
+    //console.log(products)
  
     return (
         <div>
