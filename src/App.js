@@ -13,12 +13,11 @@ function App() {
     <BrowserRouter>
     <CartContextProvider>
         <div className="App">
-            <NavBar /> {/* no se envuelve en Routes porque está fija en todas las páginas*/}
-            <Routes>  {/* sirve para envolver componentes que se navegan */}
-                <Route exact path='/' element={<ItemListContainer greetings= "Hola, bienvenido a K'epe bags" />} /> {/* Route vincula una ruta con un componente*/}
+            <NavBar /> 
+            <Routes>  
+                <Route exact path='/' element={<ItemListContainer greetings= "Hola, bienvenido a K'epe bags" />} /> 
                 <Route exact path='/category/:idCategory' element={<ItemListContainer />} />
-                <Route exact path='/item/:idProduct' element={<ItemDetailContainer />} /> {/* CAMBIÉ NOMBRE DE IDPRODUCTO*/}
-                {/*<Route exact path='/item/:idProducto' element={<ItemDetailContainer greetings= "Hola, bienvenido a K'epe bags"/>} />*/}
+                <Route exact path='/item/:idProduct' element={<ItemDetailContainer />} /> 
                 <Route exact path='/cart' element={<Cart />} />
             </Routes>
         </div>

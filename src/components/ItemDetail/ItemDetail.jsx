@@ -1,5 +1,4 @@
 import { useState } from 'react';
-//import { productos } from '../helpers/productosArray'
 import { Link } from 'react-router-dom';
 import ItemCount from '../ItemCount/ItemCount';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,29 +7,18 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import { useCartContext } from '../../context/CartContext';
 
-
-
-
 export const ItemDetail = ({product}) => {
-  //const { name, title, stock, price, pictureUrl } = productos
   const [counter, setCounter] = useState(0)
   const { cartList , addItem } = useCartContext()
 
-
   function onAdd(cant) {
-   // console.log(cant)
-   //cambiar cant por quant
-    addItem({item: product, quantity: cant}) //usar en el desafío addItem({item: productos, quantity: cant})
+    addItem({item: product, quantity: cant}) 
     setCounter(cant)
 }
 
-  //console.log(cartList)
- // <Container className="d-flex justify-content-center"></Container>
-
   return (
       <>   
-  
-            <Container>  {/* //arreglar este layout*/}
+            <Container> 
                 <Row xs="auto">
                     <div className='card w-25 mt-5'>
                                 <div className='card-header'>
@@ -53,8 +41,7 @@ export const ItemDetail = ({product}) => {
                                           <Button variant="dark">Ver más productos</Button>
                                         </Link>
                                       </>
-                                  }
-                                  
+                                  }                                 
                                 </div>
                     </div>
                 </Row>

@@ -1,19 +1,31 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/CartContext';
-import { getFirestore, addDoc, collection, doc, updateDoc, query, documentId, writeBatch, getDocs, where } from 'firebase/firestore';
+import { getFirestore, addDoc, collection, query, documentId, writeBatch, getDocs, where } from 'firebase/firestore';
 import Button from 'react-bootstrap/Button'
+import Form from '../Form/Form';
+import CartProducts from '../CartProducts/CartProducts';
 
 
 const Cart = () => {
 
-  const { cartList, removeItem, clear, totalCart } = useCartContext()
+ 
+  const  [orderId, setOrderId] = useState('')  
+
+  const  [dataForm, setDataForm] = useState({ 
+            name: '',
+            phone: '',
+            email: '', 
+})
+
+  const { cartList, clear, totalCart } = useCartContext()
 
   const buyOrder = async (e) => {
     e.preventDefault()
 
     let order = {}
 
-    order.buyer = {name:'Pablo', email: 'aguila.pablo@gmail.com' , phone: '991383361'} //agregar formulario
+    order.buyer = dataForm
     order.total = totalCart()
 
     order.items = cartList.map(cartItem => {
@@ -31,62 +43,63 @@ const Cart = () => {
 
     })
 
-    //console.log(order)
-
       const db = getFirestore()
       const ordersCollection = collection(db, 'orders')
       await addDoc(ordersCollection, order)
-        .then(resp => console.log(resp))
+        .then(resp => setOrderId(resp.id))
 
-  //para actualizar el stock o cualquier campo que quiera del documento
-  /*
-      const queryCollection = collection(db, 'items')     
-      const queryDoc = doc(db, 'items', '6rpehHEzKg2ugWczKAbV' )
-      updateDoc(queryDoc, {
-        stock: 3
-      })
-    .then(resp => console.log(resp)) 
-    */
-
-  //actualizar stock
       const queryCollection = collection(db, 'items')
 
-      const queryUpdateStock = query(  //es un filtro
+      const queryUpdateStock = query( 
           queryCollection,
-          where( documentId(), 'in', cartList.map(it => it.item.id) ) //verifica ids de colección y map devuelve arrya nuevo transformado
+          where( documentId(), 'in', cartList.map(it => it.item.id) ) 
       )
-
       const batch = writeBatch(db)
-      await  getDocs(queryUpdateStock) //trae elos arrays del foltro que están en el carro
+
+      await  getDocs(queryUpdateStock) 
           .then(resp => resp.docs.forEach(res => batch.update(res.ref, {
               stock: res.data().stock - cartList.find(item => item.item.id === res.id).quantity
             })
           ))
           .catch(err => console.log(err))
-          .finally(() => console.log('Stock actualizado')) //acá en vez de cosole.log poner función de borrar carro y alert de compra realizada
-    batch.commit() //hace el cierre y actualiza el stock en firestore
+
+          .finally(() => {
+                  setDataForm({ 
+                    name: '',
+                    phone: '',
+                    email: '',   
+                })
+          })        
+      batch.commit() 
   }
 
- 
-
     return <div className="container w-50"> 
+              {orderId !== '' && `El número de tu pedido es ${orderId} , gracias por comprar en K'epe Bags`}
+              <br/>            
               {cartList.length !== 0 ? 
                 <>
-                  { cartList.map(product => 
-                  <li>{product.item.title} {product.item.name}, Precio: ${product.item.price}, Cantidad: {product.quantity}
-                  <Button variant="danger" onClick={() => removeItem(product.item.id)}>x</Button>
-                  </li> 
+                  { cartList.map( (product) => <CartProducts product={product} />                   
                   )}
+                  <br/>
                   {`El total de tu compra es $${totalCart()}`}
+                  <br/>
+                  <br/>
                   <Button variant="dark" onClick={clear}>Vaciar canasta</Button>
-                  <Button variant="dark" onClick={buyOrder}>Generar orden de compra</Button>
+                  <br/>
+                  <br/>
+                  <Form buyOrder={buyOrder} />
+                  <br/>
+                  <Link to='/'>
+                  <Button variant="dark">Volver a la tienda</Button>
+                  </Link>
                 </>     
               :
                 <>
-                <span>Canasta vacía</span>
-                <Link to='/'>
-                  <Button variant="dark">Ver productos en tienda</Button>
-                </Link>
+                  <span>Canasta vacía</span>
+                  <br/>
+                  <Link to='/'>
+                    <Button variant="dark">Ver productos en tienda</Button>
+                  </Link>
                 </>
               }
             </div>

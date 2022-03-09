@@ -7,7 +7,6 @@ import Badge from 'react-bootstrap/Badge'
 export const CartWidget = () => {
 
     const { cantidad } = useCartContext()
-//cambiar cantidad por nombre ingles y en el padre (cartcontext)
     return (
         <div className="w-25">
             <img src="/cesta-de-la-compra.png" alt="cesta de compras" className="w-25"/>

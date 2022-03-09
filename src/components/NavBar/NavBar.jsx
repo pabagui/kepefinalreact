@@ -5,18 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import { CartWidget } from '../CartWidget/CartWidget'
 import { Link } from 'react-router-dom'
-//import NavDropdown from 'react-bootstrap/NavDropdown'
 
-/*
-<img
-                    alt=""
-                    src="logo.png"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                    />{' '}K'epe Bags
-                </Link>
-                */
 export const NavBar = () => {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
