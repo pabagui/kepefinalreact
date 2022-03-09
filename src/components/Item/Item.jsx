@@ -1,4 +1,4 @@
-import React from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -13,10 +13,10 @@ export const Item = ({ item }) => {
                 <Row xs="auto">                  
                         <div className='card w-25 mt-5'>
                                 <div className='card-header'>
-                                { `${item.name} - ${item.title}` }
+                                    { `${item.name} - ${item.title}` }
                                 </div>
                                 <div className='card-body'>
-                                <img src={item.pictureUrl} alt='alforja' className='w-50'/>                 
+                                    <img src={item.pictureUrl} alt='alforja' className='w-50'/>                 
                                 </div> 
                                 <div className='card-footer'>
                                     <Link to={`/item/${item.id}`}>

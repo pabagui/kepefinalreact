@@ -8,7 +8,8 @@ const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
 
     const addItem = (item) => {
-        const index = cartList.findIndex(prod => prod.item.id === item.item.id)
+        const index = cartList.findIndex(product => product.item.id === item.item.id)
+        //const index = cartList.findIndex(prod => prod.item.id === item.item.id)
         if (index === -1) {
             setCartList( [ ...cartList, item ])
         } else {
@@ -20,7 +21,8 @@ const CartContextProvider = ({children}) => {
     }
 
     const removeItem = (id) => {
-        setCartList(cartList.filter( producto => producto.item.id !== id))
+        setCartList(cartList.filter( product => product.item.id !== id))
+        //setCartList(cartList.filter( producto => producto.item.id !== id))
     }
 
     const clear = () => {
@@ -28,11 +30,13 @@ const CartContextProvider = ({children}) => {
     }
 
     const totalCart = () => {
-        return cartList.reduce((acum, producto) => acum= acum + (producto.item.price * producto.quantity), 0)
+        return cartList.reduce((acum, product) => acum= acum + (product.item.price * product.quantity), 0)
+        //return cartList.reduce((acum, producto) => acum= acum + (producto.item.price * producto.quantity), 0)
     }
 
     const cantidad = () => {
-        return cartList.reduce((acum, producto) => acum= acum+= producto.quantity, 0 )
+        return cartList.reduce((acum, product) => acum= acum+= product.quantity, 0)
+        //return cartList.reduce((acum, producto) => acum= acum+= producto.quantity, 0)
     }
 
 

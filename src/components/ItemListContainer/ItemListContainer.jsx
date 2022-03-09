@@ -25,12 +25,16 @@ export const ItemListContainer = ( {greetings}) => {
                 .then(resp => setProducts( resp.docs.map(prod =>( { id: prod.id, ...prod.data() }) ) ))
                 .catch(err => console.log(err))
                 .finally(()=> setLoading(false))
+
     }, [idCategory])
 
     return (
         <div>
             <p>{ greetings }</p>
-            { loading ? <h2>Cargando página ...</h2> : <ItemList products={products} /> }                 
+            { loading ? 
+                <h2>Cargando página ...</h2> 
+            : <ItemList products={products} /> 
+            }                 
         </div>
     )
 }

@@ -4,7 +4,7 @@ export function ItemList( { products } ) {
 
        return (
            <div>
-                { products.map( (item) => <Item item={item}/>                                             
+                { products.map( item => <Item item={item} />                                             
                )}
            </div>
        )  
