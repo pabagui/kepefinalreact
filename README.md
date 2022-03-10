@@ -12,4 +12,4 @@ El objetivo es crear una aplicación que permite navegar por un catálogo de pro
 
 Se utilizó npm para instalar e inicializarlo
 
-Demo: poner link de netlify
+Demo: https://relaxed-bhaskara-4ed5ad.netlify.app
