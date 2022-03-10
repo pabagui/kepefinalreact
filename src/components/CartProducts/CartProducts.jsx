@@ -7,7 +7,9 @@ const CartProducts = ({ product }) => {
     const { removeItem } = useCartContext()
 
   return (
-    <div>
+    <div
+      key={product.item.id}
+    >
         <li>{product.item.title} {product.item.name}, Precio: ${product.item.price}, Cantidad: {product.quantity}
             <Button variant="danger" onClick={() => removeItem(product.item.id)}>x</Button>
         </li> 

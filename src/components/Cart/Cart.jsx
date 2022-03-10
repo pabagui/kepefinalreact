@@ -78,8 +78,12 @@ const Cart = () => {
               <br/>            
               {cartList.length !== 0 ? 
                 <>
-                  { cartList.map( (product) => <CartProducts product={product} />                   
-                  )}
+                  { cartList.map( (product) => 
+                    <CartProducts
+                      key={product.item.id} 
+                      product={product} 
+                    />                   
+                    )}
                   <br/>
                   {`El total de tu compra es $${totalCart()}`}
                   <br/>

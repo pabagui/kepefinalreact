@@ -8,9 +8,11 @@ import { Link } from 'react-router-dom'
 export const Item = ({ item }) => {
 
     return (
-        <div>
+        <div
+        key={item.id}
+        >
             <Container> 
-                <Row xs="auto">                  
+                <Row xs="auto">                          
                         <div className='card w-25 mt-5'>
                                 <div className='card-header'>
                                     { `${item.name} - ${item.title}` }
@@ -25,7 +27,7 @@ export const Item = ({ item }) => {
                                         </Button>
                                     </Link>                           
                                 </div>
-                        </div>                  
+                        </div>                                     
                 </Row>
             </Container>
             </div>
