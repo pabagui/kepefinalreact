@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useCartContext } from '../../context/CartContext';
 import { getFirestore, addDoc, collection, query, documentId, writeBatch, getDocs, where } from 'firebase/firestore';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
 
 const Form = () => {
     
@@ -9,7 +9,11 @@ const Form = () => {
     const  [dataForm, setDataForm] = useState({
         name: '',
         phone: '',
-        email: '', 
+        email: '',
+    })
+    const [validateEmail, setValidateEmail] = useState({
+      status: false,
+      detail: 'Emails no coinciden, ingréselo nuevamente',
     })
 
     const { cartList, clear, totalCart } = useCartContext()
@@ -17,6 +21,7 @@ const Form = () => {
     const buyOrder = async (e) => {
         e.preventDefault()
     
+        if(validateEmail.status) {
         let order = {}
     
         order.buyer = dataForm
@@ -60,12 +65,15 @@ const Form = () => {
                       setDataForm({ 
                         name: '',
                         phone: '',
-                        email: '',   
+                        email: '',
                     })
                     clear()
                     alert(`Tu pedido ha sido enviado. Gracias por comprar en K'epe Bags`)
               })        
           batch.commit() 
+        } else {
+          alert(validateEmail.detail)
+        }
       }
 
     const handleChange = (event) => {      
@@ -75,9 +83,23 @@ const Form = () => {
         })
     }
     
+    async function verifyEmail(e) {
+      e.preventDefault()
+     
+      if(e.target.value === dataForm.email) {       
+        setValidateEmail({status: true, detail:'éxito'
+        })
+      } else {    
+        setValidateEmail({status: false, detail:'Emails no coinciden, ingréselo nuevamente'
+        })
+      }
+  }
 
   return (
     <div>
+        {orderId !== '' && `El id de la orden es : ${orderId} ` } 
+        {validateEmail !==  dataForm.email} 
+    
         <form onSubmit={buyOrder}>
                     <input 
                         type='text' 
@@ -101,11 +123,18 @@ const Form = () => {
                         placeholder='email' 
                         onChange={handleChange}
                         value={dataForm.email}
-                    />
+                    />                  
+                    <br/>
+                    <input 
+                        type='email' 
+                        name='validateEmail'
+                        placeholder='repetir email' 
+                        onChange={verifyEmail}                      
+                    />                
                     <br/>
                     <br/>
                     <Button variant="dark" onClick={buyOrder}>Generar orden de compra</Button>
-        </form>
+        </form> 
     </div>
   )
 }
